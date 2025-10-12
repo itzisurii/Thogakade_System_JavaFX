@@ -53,7 +53,11 @@ public class ItemManagementController {
 
     @FXML
     void btnClearActionOn(ActionEvent event) {
-
+        txtItemCode.setText("");
+        txtDescription.setText("");
+        txtQutOnHand.setText("");
+        txtUnitPrice.setText("");
+        txtCategory.setText("");
     }
 
     @FXML
