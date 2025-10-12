@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class CustomerManagementController implements Initializable {
 
-    ObservableList <CustomerManagementDTO> customerManagementDTOS = FXCollections.observableArrayList(
+    ObservableList <CustomerManagementDTO> customerManagementDTOS = FXCollections.observableArrayList( //customerManagementDTOS is a observerList that holds CustomerManagementDTO objects
             new CustomerManagementDTO("C001", "Miss", "Isu", "2005-03-08", 150000.00, "Akkarapanaha","Negombo", "Western Province", 100234),
             new CustomerManagementDTO("C002", "Miss", "Hiranya", "2007-05-02", 170000.00, "Hirana","Panadura", "Western Province", 100568)
     );
@@ -115,12 +115,26 @@ public class CustomerManagementController implements Initializable {
 
     @FXML
     void btnDeleteActionOn(ActionEvent event) {
-
+        CustomerManagementDTO selectedCustomer = tblCustomerManagement.getSelectionModel().getSelectedItem();
+        customerManagementDTOS.remove(selectedCustomer);
+        tblCustomerManagement.refresh();
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        CustomerManagementDTO selectedCustomer = tblCustomerManagement.getSelectionModel().getSelectedItem();
 
+        selectedCustomer.setId(txtCusID.getText());
+        selectedCustomer.setTitle(txtTitle.getText());
+        selectedCustomer.setName(txtName.getText());
+        selectedCustomer.setDob(txtDOB.getText());
+        selectedCustomer.setSalary(Double.parseDouble(txtSalary.getText()));
+        selectedCustomer.setAddress(txtAddress.getText());
+        selectedCustomer.setCity(txtCity.getText());
+        selectedCustomer.setProvince(txtProvince.getText());
+        selectedCustomer.setPostalCode(Integer.valueOf(txtPostalCode.getText()));
+
+        tblCustomerManagement.refresh();
     }
 
     @Override
