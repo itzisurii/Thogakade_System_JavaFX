@@ -35,7 +35,7 @@
                         </DropShadow>
                      </effect>
                   </Text>
-                  <TableView fx:id="tblCustomerManagement" layoutX="27.0" layoutY="273.0" prefHeight="242.0" prefWidth="779.0">
+                  <TableView fx:id="tblCustomerManagement" layoutX="27.0" layoutY="273.0" opacity="0.71" prefHeight="242.0" prefWidth="779.0" style="-fx-background-color: blur;">
                      <columns>
                         <TableColumn fx:id="colID" prefWidth="63.0" text="ID" />
                         <TableColumn fx:id="colTitle" prefWidth="54.0" text="Title" />

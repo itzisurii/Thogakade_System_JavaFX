@@ -80,12 +80,21 @@ public class CustomerManagementController implements Initializable {
 
     @FXML
     void btnAddActionOn(ActionEvent event) {
+        
 
     }
 
     @FXML
     void btnClearActionOn(ActionEvent event) {
-
+        txtCusID.setText("");
+        txtTitle.setText("");
+        txtName.setText("");
+        txtDOB.setText("");
+        txtSalary.setText("");
+        txtAddress.setText("");
+        txtCity.setText("");
+        txtProvince.setText("");
+        txtPostalCode.setText("");
     }
 
     @FXML
