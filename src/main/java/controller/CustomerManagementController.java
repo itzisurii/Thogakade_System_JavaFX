@@ -80,8 +80,24 @@ public class CustomerManagementController implements Initializable {
 
     @FXML
     void btnAddActionOn(ActionEvent event) {
-        
+        String id = txtCusID.getText();
+        String title = txtTitle.getText();
+        String name = txtName.getText();
+        String dob = txtDOB.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+        String address = txtAddress.getText();
+        String city = txtCity.getText();
+        String province = txtProvince.getText();
+        Integer postalCode = Integer.valueOf(txtPostalCode.getText());
 
+        CustomerManagementDTO newCustomer = new CustomerManagementDTO(id, title, name, dob, salary, address, city,province, postalCode);
+        customerManagementDTOS.add(newCustomer);
+
+        tblCustomerManagement.setItems(customerManagementDTOS);
+        tblCustomerManagement.refresh();
+
+        ActionEvent actionEvent;
+        btnClearActionOn(event);
     }
 
     @FXML
