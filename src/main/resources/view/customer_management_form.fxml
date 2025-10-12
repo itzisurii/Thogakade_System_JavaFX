@@ -12,7 +12,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerManagementController">
    <children>
       <AnchorPane layoutX="-1.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fffff;">
@@ -24,9 +23,9 @@
                         <Image url="@../images/pexels-photo-1509582.jpeg" />
                      </image>
                   </ImageView>
-                  <Text fill="#fff3e0" layoutX="242.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Management " textAlignment="CENTER" wrappingWidth="412.13671875">
+                  <Text fill="WHITE" layoutX="236.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Management " textAlignment="CENTER" wrappingWidth="412.13671875">
                      <font>
-                        <Font name="Arial Black" size="28.0" />
+                        <Font name="Bernard MT Condensed" size="35.0" />
                      </font>
                      <effect>
                         <DropShadow offsetX="2.0" offsetY="2.0">
@@ -40,16 +39,17 @@
                      <columns>
                         <TableColumn fx:id="colID" prefWidth="63.0" text="ID" />
                         <TableColumn fx:id="colTitle" prefWidth="54.0" text="Title" />
-                        <TableColumn fx:id="colName" prefWidth="143.0" text="Name" />
+                        <TableColumn fx:id="colName" prefWidth="119.0" text="Name" />
                         <TableColumn fx:id="colDOB" text="DOB" />
-                        <TableColumn fx:id="colSalary" prefWidth="109.0" text="Salary" />
-                        <TableColumn fx:id="colAddress" prefWidth="157.0" text="Address" />
-                        <TableColumn fx:id="colCity" prefWidth="86.0" text="City" />
-                        <TableColumn fx:id="colPostalCode" prefWidth="86.0" text="Postal Code" />
+                        <TableColumn fx:id="colSalary" prefWidth="95.0" text="Salary" />
+                        <TableColumn fx:id="colAddress" prefWidth="117.0" text="Address" />
+                        <TableColumn fx:id="colCity" prefWidth="75.0" text="City" />
+                        <TableColumn fx:id="colProvince" prefWidth="97.0" text="Province" />
+                        <TableColumn fx:id="colPostalCode" prefWidth="78.0" text="Postal Code" />
                      </columns>
                   </TableView>
                   <TextField fx:id="txtCusID" layoutX="69.0" layoutY="86.0" prefHeight="25.0" prefWidth="100.0" promptText="ID" />
-                  <Button layoutX="248.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnAddActionOn" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15;" text="Add">
+                  <Button layoutX="230.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnAddActionOn" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15; -fx-background-color: Navy;" text="Add" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
@@ -62,17 +62,17 @@
                   <TextField fx:id="txtCity" layoutX="455.0" layoutY="122.0" prefHeight="25.0" prefWidth="100.0" promptText="City" />
                   <TextField fx:id="txtProvince" layoutX="569.0" layoutY="122.0" prefHeight="25.0" prefWidth="100.0" promptText="Province" />
                   <TextField fx:id="txtPostalCode" layoutX="681.0" layoutY="122.0" prefHeight="25.0" prefWidth="89.0" promptText="Postal Code" />
-                  <Button layoutX="348.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15;" text="Update">
+                  <Button layoutX="330.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15; -fx-background-color: navy;" text="Update" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="448.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnDeleteActionOn" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15;" text="Delete">
+                  <Button layoutX="430.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnDeleteActionOn" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15; -fx-background-color: navy;" text="Delete" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="548.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnClearActionOn" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15;" text="Clear">
+                  <Button layoutX="530.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnClearActionOn" prefHeight="32.0" prefWidth="89.0" style="-fx-background-radius: 15; -fx-background-color: navy;" text="Clear" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>

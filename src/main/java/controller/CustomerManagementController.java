@@ -1,13 +1,26 @@
 package controller;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.dto.CustomerManagementDTO;
 
-public class CustomerManagementController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class CustomerManagementController implements Initializable {
+
+    ObservableList <CustomerManagementDTO> customerManagementDTOS = FXCollections.observableArrayList(
+            new CustomerManagementDTO("C001", "Miss", "Isu", "2005-03-08", 150000.00, "Akkarapanaha","Negombo", "Western Province", 100234),
+            new CustomerManagementDTO("C002", "Miss", "Hiranya", "2007-05-02", 170000.00, "Hirana","Panadura", "Western Province", 100568)
+    );
     @FXML
     private TableColumn<?, ?> colAddress;
 
@@ -33,7 +46,10 @@ public class CustomerManagementController {
     private TableColumn<?, ?> colTitle;
 
     @FXML
-    private TableView<?> tblCustomerManagement;
+    private TableColumn<?, ?> colProvince;
+
+    @FXML
+    private TableView<CustomerManagementDTO> tblCustomerManagement;
 
     @FXML
     private TextField txtAddress;
@@ -82,4 +98,32 @@ public class CustomerManagementController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDOB.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
+        colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+
+        tblCustomerManagement.setItems(customerManagementDTOS);
+
+        tblCustomerManagement.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            if(newValue != null){
+                txtCusID.setText(newValue.getId());
+                txtTitle.setText(newValue.getTitle());
+                txtName.setText(newValue.getName());
+                txtDOB.setText(newValue.getDob());
+                txtSalary.setText(String.valueOf(newValue.getSalary()));
+                txtAddress.setText(newValue.getAddress());
+                txtCity.setText(newValue.getCity());
+                txtProvince.setText(newValue.getProvince());
+                txtPostalCode.setText(String.valueOf(newValue.getPostalCode()));
+            }
+        });
+    }
 }
