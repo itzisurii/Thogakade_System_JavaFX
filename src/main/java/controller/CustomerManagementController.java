@@ -18,8 +18,8 @@ import java.util.ResourceBundle;
 public class CustomerManagementController implements Initializable {
 
     ObservableList <CustomerManagementDTO> customerManagementDTOS = FXCollections.observableArrayList( //customerManagementDTOS is a observerList that holds CustomerManagementDTO objects
-            new CustomerManagementDTO("C001", "Miss", "Isu", "2005-03-08", 150000.00, "Akkarapanaha","Negombo", "Western Province", 100234),
-            new CustomerManagementDTO("C002", "Miss", "Hiranya", "2007-05-02", 170000.00, "Hirana","Panadura", "Western Province", 100568)
+            new CustomerManagementDTO("C001", "Miss", "Isu", "2005-03-08", 150000.00, "Akkarapanaha","Negombo", "Western Province", "100234"),
+            new CustomerManagementDTO("C002", "Miss", "Hiranya", "2007-05-02", 170000.00, "Hirana","Panadura", "Western Province", "100568")
     );
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -88,7 +88,7 @@ public class CustomerManagementController implements Initializable {
         String address = txtAddress.getText();
         String city = txtCity.getText();
         String province = txtProvince.getText();
-        Integer postalCode = Integer.valueOf(txtPostalCode.getText());
+        String postalCode = txtPostalCode.getText();
 
         CustomerManagementDTO newCustomer = new CustomerManagementDTO(id, title, name, dob, salary, address, city,province, postalCode);
         customerManagementDTOS.add(newCustomer);
@@ -132,7 +132,7 @@ public class CustomerManagementController implements Initializable {
         selectedCustomer.setAddress(txtAddress.getText());
         selectedCustomer.setCity(txtCity.getText());
         selectedCustomer.setProvince(txtProvince.getText());
-        selectedCustomer.setPostalCode(Integer.valueOf(txtPostalCode.getText()));
+        selectedCustomer.setPostalCode(txtPostalCode.getText());
 
         tblCustomerManagement.refresh();
     }
@@ -161,7 +161,7 @@ public class CustomerManagementController implements Initializable {
                 txtAddress.setText(newValue.getAddress());
                 txtCity.setText(newValue.getCity());
                 txtProvince.setText(newValue.getProvince());
-                txtPostalCode.setText(String.valueOf(newValue.getPostalCode()));
+                txtPostalCode.setText(newValue.getPostalCode());
             }
         });
     }

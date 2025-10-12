@@ -1,6 +1,8 @@
 package model.dto;
 import lombok.*;
 
+import java.awt.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,5 +17,5 @@ public class CustomerManagementDTO {
     private String address;
     private String city;
     private String province;
-    private Integer postalCode;
+    private String postalCode;
 }
