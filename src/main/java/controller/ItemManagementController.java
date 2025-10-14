@@ -1,17 +1,28 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.dto.ItemManagementDTO;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ItemManagementController {
+public class ItemManagementController implements Initializable {
+
+    ObservableList <ItemManagementDTO> itemManagementDTOS = FXCollections.observableArrayList(
+            new ItemManagementDTO("I001", "Light", "Food", 12, 12000),
+            new ItemManagementDTO("I002", "Noodles", "Soup", 15, 20000)
+    );
 
     @FXML
     private TableColumn<?, ?> colCategory;
@@ -29,7 +40,7 @@ public class ItemManagementController {
     private TableColumn<?, ?> colUnitPrice;
 
     @FXML
-    private TableView<?> tblItemManagement;
+    private TableView<ItemManagementDTO> tblItemManagement;
 
     @FXML
     private TextField txtCategory;
@@ -48,7 +59,20 @@ public class ItemManagementController {
 
     @FXML
     void btnAddActionOn(ActionEvent event) {
+        String code = txtItemCode.getText();
+        String description = txtDescription.getText();
+        String category = txtCategory.getText();
+        int qtyOnHand = Integer.parseInt(txtQutOnHand.getText());
+        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
 
+        ItemManagementDTO newItem = new ItemManagementDTO(code, description, category, qtyOnHand, unitPrice);
+        itemManagementDTOS.add(newItem);
+
+        tblItemManagement.setItems(itemManagementDTOS);
+        tblItemManagement.refresh();
+
+        ActionEvent actionEvent;
+        btnClearActionOn(event);
     }
 
     @FXML
@@ -62,12 +86,14 @@ public class ItemManagementController {
 
     @FXML
     void btnDeleteActionOn(ActionEvent event) {
-
+        ItemManagementDTO selectedItem = tblItemManagement.getSelectionModel().getSelectedItem();
+        itemManagementDTOS.remove(selectedItem);
+        tblItemManagement.refresh();
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+        
     }
 
     Stage stage = new Stage();
@@ -81,4 +107,8 @@ public class ItemManagementController {
         stage.show();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
