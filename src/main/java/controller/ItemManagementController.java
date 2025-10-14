@@ -93,7 +93,15 @@ public class ItemManagementController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        
+        ItemManagementDTO selectedItem = tblItemManagement.getSelectionModel().getSelectedItem();
+
+        selectedItem.setCode(txtItemCode.getText());
+        selectedItem.setDescription(txtDescription.getText());
+        selectedItem.setCategory(txtCategory.getText());
+        selectedItem.setQtyOnHand(Integer.parseInt(txtQutOnHand.getText()));
+        selectedItem.setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
+
+        tblItemManagement.refresh();
     }
 
     Stage stage = new Stage();
