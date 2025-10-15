@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.dto.ItemManagementDTO;
 
@@ -117,6 +118,22 @@ public class ItemManagementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colQuantityOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
 
+        tblItemManagement.setItems(itemManagementDTOS);
+
+        tblItemManagement.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            if(newValue != null){
+                txtItemCode.setText(newValue.getCode());
+                txtDescription.setText(newValue.getDescription());
+                txtCategory.setText(newValue.getCategory());
+                txtQutOnHand.setText(String.valueOf(newValue.getQtyOnHand()));
+                txtUnitPrice.setText(String.valueOf(newValue.getUnitPrice()));
+            }
+        });
     }
 }
