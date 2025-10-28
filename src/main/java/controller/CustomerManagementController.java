@@ -152,6 +152,10 @@ public class CustomerManagementController implements Initializable {
         tblCustomerManagement.refresh();
     }
 
+    private void loadCustomerDetails(){
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
