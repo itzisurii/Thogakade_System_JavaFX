@@ -89,7 +89,16 @@ public class SupplierManagementController implements Initializable {
 
     @FXML
     void btnClearActionOn(ActionEvent event) {
-
+        txtCusID.setText("");
+        txtName.setText("");
+        txtCompanyName.setText("");
+        txtAddress.setText("");
+        txtCity.setText("");
+        txtProvince.setText("");
+        txtPostalCode.setText("");
+        txtProvince.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
     }
 
     @FXML
@@ -126,6 +135,7 @@ public class SupplierManagementController implements Initializable {
                 txtProvince.setText(newValue.getProvince());
                 txtPostalCode.setText(String.valueOf(newValue.getPostalCode()));
                 txtPhone.setText(String.valueOf(newValue.getPhone()));
+                txtEmail.setText(newValue.getEmail());
             }
         });
     }
