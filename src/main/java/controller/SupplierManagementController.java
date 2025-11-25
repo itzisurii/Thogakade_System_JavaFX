@@ -127,7 +127,19 @@ public class SupplierManagementController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        SupplierManagementDTO selectedItem = tblSupplierManagement.getSelectionModel().getSelectedItem();
 
+        selectedItem.setId(txtSupID.getText());
+        selectedItem.setName(txtName.getText());
+        selectedItem.setCompanyName(txtCompanyName.getText());
+        selectedItem.setAddress(txtAddress.getText());
+        selectedItem.setCity(txtCity.getText());
+        selectedItem.setProvince(txtProvince.getText());
+        selectedItem.setPostalCode(Integer.parseInt(txtPostalCode.getText()));
+        selectedItem.setPhone(txtPhone.getText());
+        selectedItem.setEmail(txtEmail.getText());
+
+        tblSupplierManagement.refresh();
     }
 
     @Override
