@@ -15,6 +15,6 @@ public class SupplierManagementDTO {
     private String city;
     private String province;
     private int postalCode;
-    private int phone;
+    private String phone;
     private String email;
 }

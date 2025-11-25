@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.dto.ItemManagementDTO;
 import model.dto.SupplierManagementDTO;
 
 import java.net.URL;
@@ -17,8 +18,11 @@ import java.util.ResourceBundle;
 public class SupplierManagementController implements Initializable {
 
     ObservableList<SupplierManagementDTO> supplierManagementDTOS = FXCollections.observableArrayList(
-            new SupplierManagementDTO()
+            new SupplierManagementDTO("S001", "Soap", "Company name", "Akkarapanaha", "Negombo", "Western", 11900, "0769975582", "email@gmail.com"),
+            new SupplierManagementDTO("S002", "Soap", "Company name", "Akkarapanaha", "Negombo", "Western", 11900, "0769975582", "email@gmail.com"),
+            new SupplierManagementDTO("S003","Soap", "Company name", "Akkarapanaha", "Negombo", "Western", 11900, "0769975582", "email@gmail.com" )
     );
+
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -60,7 +64,7 @@ public class SupplierManagementController implements Initializable {
     private TextField txtCompanyName;
 
     @FXML
-    private TextField txtCusID;
+    private TextField txtSupID;
 
     @FXML
     private TextField txtEmail;
@@ -79,6 +83,19 @@ public class SupplierManagementController implements Initializable {
 
     @FXML
     void btnAddActionOn(ActionEvent event) {
+        String id = txtSupID.getText();
+        String name = txtName.getText();
+        String companyName = txtCompanyName.getText();
+        String address = txtAddress.getText();
+        String city = txtCity.getText();
+        String province = txtProvince.getText();
+        int postalCode = Integer.parseInt(txtPostalCode.getText());
+        String phone = txtPhone.getText();
+        String email = txtEmail.getText();
+
+        SupplierManagementDTO newSupplier = new SupplierManagementDTO(id, name, companyName, address, city, province, postalCode, phone, email);
+        supplierManagementDTOS.add(newSupplier);
+
 
     }
 
@@ -89,7 +106,7 @@ public class SupplierManagementController implements Initializable {
 
     @FXML
     void btnClearActionOn(ActionEvent event) {
-        txtCusID.setText("");
+        txtSupID.setText("");
         txtName.setText("");
         txtCompanyName.setText("");
         txtAddress.setText("");
@@ -103,7 +120,9 @@ public class SupplierManagementController implements Initializable {
 
     @FXML
     void btnDeleteActionOn(ActionEvent event) {
-
+        SupplierManagementDTO selectedItem = tblSupplierManagement.getSelectionModel().getSelectedItem();
+        supplierManagementDTOS.remove(selectedItem);
+        tblSupplierManagement.refresh();
     }
 
     @FXML
@@ -127,7 +146,7 @@ public class SupplierManagementController implements Initializable {
 
         tblSupplierManagement.getSelectionModel().selectedItemProperty().addListener((observer, oldvalue, newValue)->{
             if(newValue != null){
-                txtCusID.setText(newValue.getId());
+                txtSupID.setText(newValue.getId());
                 txtName.setText(newValue.getName());
                 txtCompanyName.setText(newValue.getCompanyName());
                 txtAddress.setText(newValue.getAddress());
