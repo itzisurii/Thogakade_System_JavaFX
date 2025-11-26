@@ -105,7 +105,16 @@ public class EmployeeManagementController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        EmployeeManagementDTO selectedItem = tblEmployeeManagement.getSelectionModel().getSelectedItem();
 
+        selectedItem.setId(txtId.getText());
+        selectedItem.setName(txtName.getText());
+        selectedItem.setNic(txtNIC.getText());
+        selectedItem.setDob(txtDOB.getText());
+        selectedItem.setPosition(txtPosition.getText());
+        selectedItem.setSalary(Double.parseDouble(txtSalary.getText()));
+
+        tblEmployeeManagement.refresh();
     }
 
     @Override
