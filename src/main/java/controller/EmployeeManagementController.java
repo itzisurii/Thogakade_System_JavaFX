@@ -10,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.EmployeeManagementDTO;
+import model.dto.ItemManagementDTO;
+import model.dto.SupplierManagementDTO;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,7 +84,9 @@ public class EmployeeManagementController implements Initializable {
 
     @FXML
     void btnDeleteActionOn(ActionEvent event) {
-
+        EmployeeManagementDTO selectedItem = tblEmployeeManagement.getSelectionModel().getSelectedItem();
+        employeeManagementDTOS.remove(selectedItem);
+        tblEmployeeManagement.refresh();
     }
 
     @FXML
