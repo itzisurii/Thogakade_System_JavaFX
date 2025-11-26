@@ -8,8 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.EmployeeManagementDTO;
-import model.dto.ItemManagementDTO;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +40,7 @@ public class EmployeeController implements Initializable {
     private TableColumn<?, ?> colSalary;
 
     @FXML
-    private TableView<?> tblItemManagement;
+    private TableView<EmployeeManagementDTO> tblEmployeeManagement;
 
     @FXML
     private TextField txtDOB;
@@ -87,6 +87,24 @@ public class EmployeeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colNIC.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colDOB.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
 
+        tblEmployeeManagement.setItems(employeeManagementDTOS);
+
+        tblEmployeeManagement.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            if(newValue != null){
+                txtId.setText(newValue.getId());
+                txtName.setText(newValue.getName());
+                txtNIC.setText(newValue.getNic());
+                txtDOB.setText(String.valueOf(newValue.getDob()));
+                txtPosition.setText(String.valueOf(newValue.getPosition()));
+                txtSalary.setText(String.valueOf(newValue.getSalary()));
+            }
+        });
     }
 }
