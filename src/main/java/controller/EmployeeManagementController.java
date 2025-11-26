@@ -64,7 +64,21 @@ public class EmployeeManagementController implements Initializable {
 
     @FXML
     void btnAddActionOn(ActionEvent event) {
+        String id = txtId.getText();
+        String name = txtName.getText();
+        String nic = txtNIC.getText();
+        String dob = txtDOB.getText();
+        String position = txtPosition.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
 
+        EmployeeManagementDTO newItem = new EmployeeManagementDTO(id, name, nic, dob, position, salary);
+        employeeManagementDTOS.add(newItem);
+
+        tblEmployeeManagement.setItems(employeeManagementDTOS);
+        tblEmployeeManagement.refresh();
+
+        ActionEvent actionEvent;
+        btnClearActionOn(event);
     }
 
     @FXML
