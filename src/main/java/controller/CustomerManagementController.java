@@ -17,14 +17,13 @@ import model.dto.CustomerManagementDTO;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class CustomerManagementController implements Initializable {
 
-    ObservableList <CustomerManagementDTO> customerManagementDTOS = FXCollections.observableArrayList( //customerManagementDTOS is a observerList that holds CustomerManagementDTO objects
-            new CustomerManagementDTO("C001", "Miss", "Isu", "2005-03-08", 150000.00, "Akkarapanaha","Negombo", "Western Province", "100234"),
-            new CustomerManagementDTO("C002", "Miss", "Hiranya", "2007-05-02", 170000.00, "Hirana","Panadura", "Western Province", "100568")
-    );
+    ObservableList <CustomerManagementDTO> customerManagementDTOS = FXCollections.observableArrayList(); //customerManagementDTOS is a observerList that holds CustomerManagementDTO objects
+
     @FXML
     private TableColumn<?, ?> colAddress;
 
@@ -152,6 +151,38 @@ public class CustomerManagementController implements Initializable {
         tblCustomerManagement.refresh();
     }
 
+    private void loadCustomerDetails(){
+        customerManagementDTOS.clear();
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Thogakademanagement", "root", "1234");
+            String SQL = "SELECT * FROM customer";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                CustomerManagementDTO customerManagementDTO = new CustomerManagementDTO(
+                        resultSet.getString("CustomerID"),
+                        resultSet.getString("Title"),
+                        resultSet.getString("Name"),
+                        resultSet.getString("DateOfBirth"),
+                        resultSet.getDouble("Salary"),
+                        resultSet.getString("Address"),
+                        resultSet.getString("City"),
+                        resultSet.getString("Province"),
+                        resultSet.getString("PostalCode")
+                );
+                System.out.println(customerManagementDTO);
+                customerManagementDTOS.add(customerManagementDTO);
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        tblCustomerManagement.setItems(customerManagementDTOS);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -164,20 +195,7 @@ public class CustomerManagementController implements Initializable {
         colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
         colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
-        tblCustomerManagement.setItems(customerManagementDTOS);
+        loadCustomerDetails();
 
-        tblCustomerManagement.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
-            if(newValue != null){
-                txtCusID.setText(newValue.getId());
-                txtTitle.setText(newValue.getTitle());
-                txtName.setText(newValue.getName());
-                txtDOB.setText(newValue.getDob());
-                txtSalary.setText(String.valueOf(newValue.getSalary()));
-                txtAddress.setText(newValue.getAddress());
-                txtCity.setText(newValue.getCity());
-                txtProvince.setText(newValue.getProvince());
-                txtPostalCode.setText(newValue.getPostalCode());
-            }
-        });
     }
 }

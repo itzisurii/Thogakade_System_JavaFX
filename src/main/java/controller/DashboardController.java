@@ -23,7 +23,12 @@ public class DashboardController {
 
     @FXML
     void btnEmployeeManagement(ActionEvent event) {
-
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/employee_management_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
     }
 
     @FXML
@@ -38,7 +43,12 @@ public class DashboardController {
 
     @FXML
     void btnSupplierManagement(ActionEvent event) {
-
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/supplier_management_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
     }
 
 }
