@@ -14,7 +14,7 @@ import model.dto.EmployeeManagementDTO;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeeController implements Initializable {
+public class EmployeeManagementController implements Initializable {
 
     ObservableList<EmployeeManagementDTO> employeeManagementDTOS = FXCollections.observableArrayList(
             new EmployeeManagementDTO("E001", "john", "200567990", "2005-03-08", "Head", 120000),
@@ -72,7 +72,12 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void btnClearActionOn(ActionEvent event) {
-
+        txtId.setText("");
+        txtName.setText("");
+        txtNIC.setText("");
+        txtDOB.setText("");
+        txtPosition.setText("");
+        txtSalary.setText("");
     }
 
     @FXML
